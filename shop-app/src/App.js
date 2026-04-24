@@ -32,7 +32,7 @@ export default function App() {
       default: break;
     }
     return list;
-  }, [searchQuery, priceRange, sortBy, category]);//fix 2
+  }, [searchQuery, priceRange, sortBy, category]);//fix 2 add category to dependencies
 
   function addToCart(product) {
     setCartItems(prev => {
@@ -44,7 +44,7 @@ export default function App() {
   }
 
   function removeFromCart(id) {
-    setCartItems(prev => prev.filter(i => i.id !== id));// bug fix 3
+    setCartItems(prev => prev.filter(i => i.id !== id));// bug fix 3 - remove item instead of decreasing quantity
   }
 
   function updateQty(id, qty) {
@@ -52,8 +52,8 @@ export default function App() {
     setCartItems(prev => prev.map(i => i.id === id ? { ...i, qty } : i));
   }
 
-  const cartCount = cartItems.reduce((sum, i) => sum + i.qty, 0);
-  const cartItemIds = new Set(cartItems.map(i => i.id));
+  const cartCount = cartItems.reduce((sum, i) => sum + i.qty, 0); // bug fix 4 - count total quantity instead of items length
+  const cartItemIds = new Set(cartItems.map(i => i.id)); // fix 5 - create a set of item ids for quick lookup
 
   return (
     <div className="app">
