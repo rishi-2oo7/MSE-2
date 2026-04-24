@@ -19,7 +19,7 @@ export default function App() {
       const matchSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         p.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
         p.category.toLowerCase().includes(searchQuery.toLowerCase());
-      const matchPrice = p.price > priceRange.min && p.price <= priceRange.max;n//bug fix 1
+      const matchPrice = p.price > priceRange.min && p.price <= priceRange.max; //bug fix 1
       const matchCategory = category === 'All' || p.category === category;
       return matchSearch && matchPrice && matchCategory;
     });
